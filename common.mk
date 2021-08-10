@@ -1,12 +1,10 @@
 # -*- mode: BSDmakefile; tab-width: 8; indent-tabs-mode: nil -*-
-
 # This Source Code Form is subject to the terms of the Mozilla Public
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at https://mozilla.org/MPL/2.0/.
 #
 # Copyright (c) 2007-2014 VMware, Inc. or its affiliates. All rights reserved.
 # Copyright (c) 2014-2020 Michael Klishin and contributors.
-
 OPENSSL = openssl
 
 ifndef PYTHON
@@ -60,6 +58,13 @@ gen:
 	--common-name $(CN) \
 	--client-alt-name $(CLIENT_ALT_NAME) \
 	--server-alt-name $(SERVER_ALT_NAME) \
+	--days-of-validity $(DAYS_OF_VALIDITY) \
+	--key-bits $(NUMBER_OF_PRIVATE_KEY_BITS) $(ECC_FLAGS)
+
+gen-client:
+	$(PYTHON) profile.py generate-client --password $(PASS) \
+	--common-name $(CN) \
+	--client-alt-name $(CLIENT_ALT_NAME) \
 	--days-of-validity $(DAYS_OF_VALIDITY) \
 	--key-bits $(NUMBER_OF_PRIVATE_KEY_BITS) $(ECC_FLAGS)
 
