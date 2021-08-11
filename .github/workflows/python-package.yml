@@ -62,6 +62,7 @@ jobs:
         make -C two_shared_intermediates clean
         # Run file list checker
         #
+        chmod u+x .github/bin/check-results.sh
         bash -c .github/bin/check-results.sh
         # Info
         make -C basic info
