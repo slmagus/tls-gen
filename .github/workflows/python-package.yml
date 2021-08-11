@@ -60,6 +60,15 @@ jobs:
         make -C two_shared_intermediates verify
         # Clean
         make -C two_shared_intermediates clean
+        # Run file list checker
+        #
+        bash -c .github/workflow/bin/check-results.sh
+        # Info
+        make -C basic info
+        # Verify
+        make -C basic verify
+        #Clean
+        make -C basic clean
   builds-windows:
 
     runs-on: windows-latest
