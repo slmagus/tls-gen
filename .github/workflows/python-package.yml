@@ -35,7 +35,7 @@ jobs:
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Run basic generation
+    - name: Run basic generation profile
       run: |
         make -C basic
         # Info
@@ -44,7 +44,9 @@ jobs:
         make -C basic verify
         # Clean
         make -C basic clean
-        #generate seperat intermediates
+    - name: Run seperate intermediates profile
+      run: |
+        #generate seperate intermediates
         make -C separate_intermediates
         # Info
         make -C separate_intermediates info
@@ -52,6 +54,8 @@ jobs:
         make -C separate_intermediates verify
         # Clean
         make -C separate_intermediates clean
+    - name: Run two shared intermediates profile
+      run: |
         # generate two_shared
         make -C two_shared_intermediates
         # Info
@@ -60,16 +64,23 @@ jobs:
         make -C two_shared_intermediates verify
         # Clean
         make -C two_shared_intermediates clean
-        # Run file list checker
-        #
-        chmod u+x .github/bin/check-results.sh
-        bash -c .github/bin/check-results.sh
-        # Info
-        make -C basic info
-        # Verify
-        make -C basic verify
-        #Clean
-        make -C basic clean
+    - name: Run basic with multiple clients
+      run: |
+       make -C basic clean
+       make -C basic CN=client1
+       make -C basic CN=client2
+       make -C basic CN=client3
+       make -C basic CN=client4
+       make -C basic CN=client5
+       # Run file list checker
+       chmod u+x .github/bin/check-results.sh
+       bash -c .github/bin/check-results.sh
+       # Info
+       make -C basic info
+       # Verify
+       make -C basic verify
+       #Clean
+       make -C basic clean
   builds-windows:
 
     runs-on: windows-latest
