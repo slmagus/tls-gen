@@ -42,6 +42,7 @@ def generate_client(opts):
     print("Done! Find generated certificates and private keys under ./result!")
 
 def clean(opts):
+    cn = opts.common_name
     for s in [paths.root_ca_path(),
               paths.result_path(),
               paths.leaf_pair_path('server'.format(cn)),
