@@ -66,7 +66,7 @@ jobs:
         make -C two_shared_intermediates clean
     - name: Run basic with multiple clients
       run: |
-       make -C basic
+       make -C basic CN=server1
        make gen-client -C basic CN=client1
        make gen-client -C basic CN=client2
        make gen-client -C basic CN=client3
