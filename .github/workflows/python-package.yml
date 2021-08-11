@@ -66,12 +66,12 @@ jobs:
         make -C two_shared_intermediates clean
     - name: Run basic with multiple clients
       run: |
-       make -C basic clean
-       make -C basic CN=client1
-       make -C basic CN=client2
-       make -C basic CN=client3
-       make -C basic CN=client4
-       make -C basic CN=client5
+       make -C basic
+       make gen-client -C basic CN=client1
+       make gen-client -C basic CN=client2
+       make gen-client -C basic CN=client3
+       make gen-client -C basic CN=client4
+       make gen-client -C basic CN=client5
        # Run file list checker
        chmod u+x .github/bin/check-results.sh
        bash -c .github/bin/check-results.sh
