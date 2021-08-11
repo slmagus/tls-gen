@@ -62,7 +62,7 @@ jobs:
         make -C two_shared_intermediates clean
         # Run file list checker
         #
-        bash -c .github/workflow/bin/check-results.sh
+        bash -c .github/bin/check-results.sh
         # Info
         make -C basic info
         # Verify
