@@ -32,6 +32,15 @@ def generate(opts):
     _copy_artifacts_to_results(opts)
     print("Done! Find generated certificates and private keys under ./result!")
 
+def generate_server(opts):
+    cli.ensure_password_is_provided(opts)
+    print("Will generate a certificate/key pair (server only)")
+    cn = opts.common_name
+    name = 'server_{}'.format(cn)
+    gen.generate_leaf_certificate_and_key_pair('server', opts, name)
+    gen.copy_leaf_certificate_and_key_pair(name)
+    print("Done! Find generated certificates and private keys under ./result!")
+    
 def generate_client(opts):
     cli.ensure_password_is_provided(opts)
     print("Will generate a certificate/key pair (client only)")
@@ -76,6 +85,7 @@ def info(opts):
 commands = {"generate":        generate,
             "gen":             generate,
             "generate-client": generate_client,
+            "generate-server": generate_server,
             "clean":           clean,
             "regenerate":      regenerate,
             "regen":           regenerate,
