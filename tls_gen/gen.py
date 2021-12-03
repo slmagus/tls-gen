@@ -50,8 +50,8 @@ def get_openssl_cnf_path(opts):
     return tmp_cnf_path
 
 def copy_root_ca_certificate_and_key_pair():
-    copy_tuple_path((root_ca_dir_name, "cacert.pem"),           (result_dir_name, "ca_certificate.pem"))
-    copy_tuple_path((root_ca_dir_name, "private", "cakey.pem"), (result_dir_name, "ca_key.pem"))
+    copy_tuple_path((root_ca_dir_name(), "cacert.pem"),           (result_dir_name, "ca_certificate.pem"))
+    copy_tuple_path((root_ca_dir_name(), "private", "cakey.pem"), (result_dir_name, "ca_key.pem"))
 
 def copy_leaf_certificate_and_key_pair(peer):
     copy_tuple_path((peer, "cert.pem"),    (result_dir_name, "{}_certificate.pem".format(peer)))
