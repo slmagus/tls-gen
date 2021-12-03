@@ -1,16 +1,16 @@
 # Note: LibreSSL 2.2.7 does not correctly support environment variables
 # here and that is the version that ships with OS X High Sierra. So, we
 # replace text using Python and generate a temporary cnf file
-
+[ default ]
 common_name = @COMMON_NAME@
 client_alt_name = @CLIENT_ALT_NAME@
 server_alt_name = @SERVER_ALT_NAME@
 
 [ ca ]
-default_ca = test_root_ca
+default_ca = root_ca
 
-[ test_root_ca ]
-root_ca_dir = testca
+[ root_ca ]
+root_ca_dir = root_ca
 
 certificate   = $root_ca_dir/cacert.pem
 database      = $root_ca_dir/index.txt
@@ -22,10 +22,10 @@ default_crl_days = 7
 default_days     = 1825
 default_md       = sha256
 
-policy          = test_root_ca_policy
+policy          = root_ca_policy
 x509_extensions = certificate_extensions
 
-[ test_root_ca_policy ]
+[ root_ca_policy ]
 commonName = supplied
 stateOrProvinceName = optional
 countryName = optional

@@ -8,9 +8,9 @@
 import os
 from os import path
 import shutil
-
+import configparser
 root             = os.getcwd()
-root_ca_dir_name = "testca"
+
 result_dir_name  = "result"
 
 #
@@ -29,21 +29,28 @@ def openssl_cnf_path():
 #
 # Root CA
 #
+def root_ca_dir_name():
+    #Use config parser when openssl.cnf is standarized
+    #config = configparser.ConfigParser()
+    #config.read(openssl_cnf_path())
+    #root_ca_dir_name = config['root_ca']['root_ca_dir']
+    root_ca_dir_name = "root_ca"
+    return root_ca_dir_name
 
 def root_ca_path():
-    return path.join(root, root_ca_dir_name)
+    return path.join(root, root_ca_dir_name())
 
 def root_ca_certs_path():
-    return path.join(root, root_ca_dir_name, "certs")
+    return path.join(root, root_ca_dir_name(), "certs")
 
 def root_ca_certificate_path():
-    return path.join(root, root_ca_dir_name, "cacert.pem")
+    return path.join(root, root_ca_dir_name(), "cacert.pem")
 
 def root_ca_key_path():
-    return path.join(root, root_ca_dir_name, "private", "cakey.pem")
+    return path.join(root, root_ca_dir_name(), "private", "cakey.pem")
 
 def root_ca_certificate_cer_path():
-    return path.join(root, root_ca_dir_name, "cacert.cer")
+    return path.join(root, root_ca_dir_name(), "cacert.cer")
 
 #
 # Intermediate CAs
