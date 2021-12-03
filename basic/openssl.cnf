@@ -1,7 +1,7 @@
 # Note: LibreSSL 2.2.7 does not correctly support environment variables
 # here and that is the version that ships with OS X High Sierra. So, we
 # replace text using Python and generate a temporary cnf file
-[ default ]
+
 common_name = @COMMON_NAME@
 client_alt_name = @CLIENT_ALT_NAME@
 server_alt_name = @SERVER_ALT_NAME@
